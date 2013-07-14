@@ -1,0 +1,30 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+import logging
+import os
+import time
+import threading
+from threading import Thread 
+from subprocess import Popen, PIPE, STDOUT
+
+def init(bot):
+	return 1
+
+def inUnicode(string):
+	if string==None:
+		return ""
+	if not isinstance(string, unicode):
+		return unicode(string,'utf-8','ignore')
+	return string
+	
+def run(bot,user,message):
+	try:
+		p =Popen(message, shell=True, stdin=PIPE, stdout=PIPE, stderr=STDOUT, close_fds=True)
+		output=inUnicode(p.stdout.read())
+		bot.sendMessage(user,output)
+	except Exception, e:
+		logging.warning(e)
+	
+
+def help():
+	return "выполняет комманду в консоли и возвращает вывод )"
