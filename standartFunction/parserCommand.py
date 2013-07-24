@@ -44,7 +44,7 @@ def getListParameters(string):
 
 		separator=u"\'"
 		if (string.count(separator)%2!=0):
-			raise NameError, "лол количество кавычек нечетно оо"
+			raise NameError, "lol odd number of quotes oo"
 		kokoString=string
 		substrings=[]
 		ko=False

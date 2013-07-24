@@ -3,14 +3,9 @@
 
 import MySQLdb
 import logging
+from standartFunction.TSettingsRecord import *
 
-configMYsql={
-			'host':"localhost",
-	 		'user':"emi",
-	 		'password':"password",
-	 		'db':"emi",
-	 		'charset':'utf8'
-		}
+configMYsql=TSettingsRecord("baseSettings","bot").getSettings()
 
 def getConfig():
 	"""получаем конфиги для подключения к бд ))"""
@@ -18,7 +13,7 @@ def getConfig():
 
 def getData(query):
 	"""получаем данные из базы"""
-	logging.debug(u"подключаемся к базе")
+	logging.debug(u"connect to the database")
 	db = MySQLdb.connect(host=configMYsql['host'], user=configMYsql['user'], passwd=configMYsql['password']
 						, db=configMYsql['db'], charset=configMYsql['charset'])
 	#logging.debug(u"подключились к базе")
@@ -30,7 +25,7 @@ def getData(query):
 	cursor.execute("set collation_connection='utf8_general_ci';")
 	#cursor.execute("ALTER TABLE usersAccessLevel CONVERT TO CHARACTER SET utf8 COLLATE     utf8_general_ci;")#конвертнет таблицу в нужную кодировку 
 	cursor.execute(str(query))# выполняем запрос
-	logging.debug(u"выполнили запрос" +query)
+	logging.debug(u"executing a query" +query)
 	data =  cursor.fetchall()# получаем результат выполнения запроса
 	
 	db.close()# закрываем соединение с БД

@@ -5,7 +5,7 @@ class show(object):
 	def __init__(self,bot):
 		pass
 
-	def run(bot,user,message):
+	def run(self,bot,user,message):
 		if message==u"наруто" or message==u"naruto":
 			naruto='''```````````````````````¶`````````¶¶
 			````````````````¶`````¶`¶```````¶`¶
@@ -74,7 +74,7 @@ class show(object):
 			                     '''
 			bot.sendMessage(user, cat)
 
-	def help():
+	def help(self):
 		return "показывает разную забавную ерунду"
-	def accessLevel():
+	def accessLevel(self):
 		return 1000

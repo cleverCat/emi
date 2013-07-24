@@ -1,11 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import logging
+from standartFunction.TSettingsRecord import *
 
-config={
-		'friends':( 'myjabber',)
-		}
-
+config=TSettingsRecord("emi","emi").getSettings()
 
 
 class emi(object):
@@ -14,12 +12,12 @@ class emi(object):
 		for friend in config['friends']:
 			bot.sendMessage(friend,u"привет я проснулась ) поболтай со мной")
 
-	def accessLevel():
+	def accessLevel(self):
 		return 1000
 
-	def run(bot,user,message):
+	def run(self,bot,user,message):
 		logging.debug(u"выполняем run emi")
 		bot.sendMessage(user,"ты так интересно рассказываешь ))")
 
-	def help():
+	def help(self):
 		return "при старте бота сигнализирует о том что он поднялся )"

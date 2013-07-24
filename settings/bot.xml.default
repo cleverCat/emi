@@ -1,0 +1,6 @@
+<?xml version="1.1" encoding='UTF-8' ?>
+<settings>
+<bot user="user" server="server" port="5222" password="password">
+</bot>
+<baseSettings host="host" user="user" password="password" db="database" charset="utf8" ></baseSettings>
+</settings>

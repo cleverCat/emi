@@ -10,7 +10,7 @@ from sqlAdapter import performQuery
 def testMysql():
 	try:
 		if getData(u"SHOW TABLES LIKE 'usersAccessLevel'")==():
-			logging.debug(u"пора выполнить запрос на создание таблицы ")
+			logging.debug(u"create a table usersAccessLevel")
 			performQuery(u"CREATE TABLE `usersAccessLevel` (`id` INT(11) NOT NULL AUTO_INCREMENT, `name` CHAR(30) NOT NULL, `accessLevel` SMALLINT(6) NOT NULL, PRIMARY KEY(`id`))")
 			performQuery("ALTER TABLE usersAccessLevel CONVERT TO CHARACTER SET utf8 COLLATE     utf8_general_ci;")#конвертнет таблицу в нужную кодировку 
 		return True
@@ -25,17 +25,17 @@ def getAccess(command,bot,user,message):
 		if testMysql()==False:
 			return False
 		logging.debug(user.getNode())
-		logging.debug(u"формируем запрос")
+		logging.debug(u"forming query")
 		query=u"SELECT `accessLevel` FROM `usersAccessLevel` WHERE `name` ='"+unicode(user.getNode().decode('utf-8'))+u"@"+unicode(user.getDomain().decode('utf-8'))+u"';"
 		logging.debug(query)
 		userLevel=999
 		if getData(query)!=():
 			userLevel=getData(query)[0][0]
-		logging.debug(u"сравниваем уровни доступа")
+		logging.debug(u"compare levels of access")
 		logging.debug(int(userLevel))
 		logging.debug(int(bot.plugins[command].accessLevel()))
 		if int(userLevel)<=int(bot.plugins[command].accessLevel()):
-			logging.debug(u"выходим из getAccess")
+			logging.debug(u"come out of the getAccess")
 			return True
 		else:
 			return False

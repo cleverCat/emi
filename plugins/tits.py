@@ -6,11 +6,11 @@ class tits(object):
 	def __init__(self, arg):
 		pass
 
-	def accessLevel(bot):
+	def accessLevel(self):
 		return 0
 
-	def run(bot,user,message):
+	def run(self,bot,user,message):
 		bot.sendMessage(user,"(o Y o)")
 
-	def help():
+	def help(self):
 		return "показывает (o Y o) "

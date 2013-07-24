@@ -3,6 +3,7 @@
 try:
 	import xmpp,sys
 	import logging
+	from standartFunction.TSettingsRecord import *
 except ImportError:
 	pass
 from jabberBot import TJabberBot
@@ -10,14 +11,7 @@ from jabberBot import TJabberBot
 
 reload(sys)
 sys.setdefaultencoding('utf8') 
-logging.basicConfig(format = u'%(filename)s[LINE:%(lineno)d]# %(levelname)-8s [%(asctime)s]  %(message)s', level = logging.CRITICAL)
-
-config = { #имя пользователя,server,порт и пароль для подключения
-'user': 'user',
-'server':'server',
-'port':'port',
-'password': 'password'
-}
+logging.basicConfig(format = u'%(filename)s[LINE:%(lineno)d]# %(levelname)-8s [%(asctime)s]  %(message)s', level = logging.DEBUG)
 
 def messageHandler(conn, mess): #вызывается при входящем сообщении
 	global bot
@@ -32,11 +26,12 @@ def messageHandler(conn, mess): #вызывается при входящем с
 	bot.getMessage(user,text)
 
 
-while(True):
-	try:
-		bot = TJabberBot(str(config['user']),str(config['server']),int(config['port']),str(config['password']))
-		bot.registerHandler('message', messageHandler)
-		bot.start()
-	except:
-		pass
+#while(True):
+#	try:
+config=TSettingsRecord("bot","bot").getSettings()
+bot = TJabberBot(str(config['user']),str(config['server']),int(config['port']),str(config['password']))
+bot.registerHandler('message', messageHandler)
+bot.start()
+#	except:
+#		pass
 

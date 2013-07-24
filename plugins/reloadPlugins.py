@@ -7,15 +7,15 @@ from pluginsManager import runPlugin
 class reloadPlugins(object):
 	"""перезагружает плагины"""
 	def __init__(self, bot):
-		super(reloadPlugins, self).__init__()
+		pass
 
-	def accessLevel():
+	def accessLevel(self):
 		return 0
 
-	def run(bot,user,message):
-		logging.debug(u"перезагружаем плагины")
+	def run(self,bot,user,message):
+		logging.debug(u"reload plugins")
 		bot.plugins = loadBotPlugins(bot)
-		bot.sendMessage(user,"перезагрузили плагины")
+		bot.sendMessage(user,"restarted plugins")
 
-	def help():
+	def help(self):
 		return "перезагружает плагины"

@@ -21,11 +21,11 @@ def runTests():
 					tests=__import__('test.'+testName)
 					test = getattr(tests,testName)
 					if test.startTest():
-						outpytString=outpytString+testName+u" пройден\n"
+						outpytString=outpytString+testName+u" passed\n"
 					else:
-						outpytString=outpytString+u"!!"+testName+u" завален\n"
+						outpytString=outpytString+u"!!"+testName+u" swamped\n"
 	except Exception, e:
-		outpytString=outpytString+u"\n!!!ужасно тесты упали (("
+		outpytString=outpytString+u"\n!!!Tests have fallen badly (("
 		raise e
 	return outpytString
 			

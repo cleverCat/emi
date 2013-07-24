@@ -61,9 +61,9 @@ class TJabberBot:
 	def runCommand(self,user,command,message):
 		"""проверяем есть ли у нас такая комманда, возможно в будущем стоит добавить проверку можем ли мы выполнить эту комманду"""
 		if command in self.plugins:
-			logging.debug(u"!!!! пытаемся запустить комманду "+command)
+			logging.debug(u"!!!! trying to run the command"+command)
 			runPlugin(command,self,user,message)
-			logging.debug(u"!!!! комманда отработала")
+			logging.debug(u"!!!! command will fulfilled")
 		else:
 			#self.sendMessage(user,"не удалось найти комманду")
 			runPlugin("emi",self,user,message)
@@ -77,7 +77,7 @@ class TJabberBot:
 				message=message[message.find(" ")+1:]
 				self.runCommand(user,command,message)
 		except:
-			self.sendMessage(user,"комманда упала во время выполнения ")
+			self.sendMessage(user,"command will fall during the execution of")
 		
 
 
@@ -86,8 +86,8 @@ class TJabberBot:
 			self.conn.Process(1)
 			time.sleep(1)
 		except KeyboardInterrupt:
-			return 0
-		return 1
+			return False
+		return True
 
 	def start(self):
 		"""запускаем бота"""

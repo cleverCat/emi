@@ -29,11 +29,11 @@ def loadBotPlugins(bot):
 def runPlugin(command,bot,user,message):
 	"""запускаем комманду из плагинов"""
 	if getAccess(command,bot,user,message)==True:
-		logging.debug(u"ищем плагин"+command)
+		logging.debug(u"looking for plug-in"+command)
 		plugin = bot.plugins[command]
-		logging.debug(u"получили плагин")
+		logging.debug(u"get plugin")
 		thread = Thread(target=plugin.run,args=(bot,user,message))
 		thread.start()
-		logging.debug(u"выполнили плагин")
+		logging.debug(u"start plugin")
 	else:
 		bot.sendMessage(user,"ололо не для тебя эта комманда писалась")
